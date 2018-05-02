@@ -2,8 +2,8 @@
 
 import sys, os
 
-import afni_base as B
-import afni_util as U
+import afnipython.afni_base as B
+import afnipython.afni_util as U
 import afnipython.lib_afni1D as LD
 import lib_textdata as LT
 

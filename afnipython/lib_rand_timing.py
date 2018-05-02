@@ -449,7 +449,7 @@ class TimingClass:
          - shuffle
       """
 
-      import lib_decay_timing as LDT
+      import afnipython.lib_decay_timing as LDT
 
       if nevents <= 0: return []
       if nevents == 1: return [tot_time]

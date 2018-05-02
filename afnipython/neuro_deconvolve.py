@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import sys
-import option_list, afni_util as UTIL, afni_base as BASE
+import afnipyton.option_list
+from afnipyton import afnipython.afni_util as UTIL, afni_base as BASE
 import afnipython.lib_afni1D as LD
 
 g_help_string = """

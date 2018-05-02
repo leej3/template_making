@@ -106,7 +106,7 @@ class ModuleTest:
       self.OL             = None        # store option_list module locally
 
    def init_opts(self):
-      import option_list
+      import afnipython.option_list
       self.OL = option_list
 
       self.valid_opts = self.OL.OptionList('valid options')

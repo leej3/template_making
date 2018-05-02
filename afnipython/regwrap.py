@@ -4,9 +4,9 @@ import os
 # sys.path.append('/data/NIMH_SSCC/template_making/scripts')
 
 # AFNI modules
-import afni_base as ab
-import afni_util as au
-from option_list import OptionList, read_options
+import afnipython.afni_base as ab
+import afnipython.afni_util as au
+from afnipython.option_list import OptionList, read_options
 class RegWrap:
     def __init__(self, label):
         # software version (update for changes)

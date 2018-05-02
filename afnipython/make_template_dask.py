@@ -11,9 +11,9 @@ import sys
 import socket
 from shutil import which
 # AFNI modules
-import afni_base as ab
-import afni_util as au
-from regwrap import RegWrap
+import afnipython.afni_base as ab
+import afnipython.afni_util as au
+from afnipython.regwrap import RegWrap
 
 # parallelization library
 try:

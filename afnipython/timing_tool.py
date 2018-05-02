@@ -10,7 +10,7 @@ import gc, math, copy
 import afnipython.option_list as OL
 import afnipython.lib_timing as LT
 import afnipython.afni_util as UTIL
-import lib_textdata as TD
+import afnipython.lib_textdata as TD
 
 # ----------------------------------------------------------------------
 # globals

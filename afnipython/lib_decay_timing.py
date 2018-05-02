@@ -340,7 +340,7 @@ def show_times_PDF(L,N,nbin, y0=0):
 
 def plot_pdf_from_file(fname, nbin, scale=1, L=0):
   
-   import lib_textdata as TD
+   import afnipython.lib_textdata as TD
    data = TD.read_1D_file(fname)[0]
    data.sort()
    show_val_bins(data, nbin, scale=scale, L=L)

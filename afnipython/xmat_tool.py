@@ -12,7 +12,7 @@ def main():
    if not XM: return 1
 
    if XM.use_gui:
-      import gui_xmat
+      from afnipython import gui_xmat
       gui = gui_xmat.XmatGUI()
       if not gui: return 1
 

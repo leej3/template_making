@@ -14,7 +14,7 @@ afni_bin = subprocess.check_output("which afni",shell=True)
 afni_dir = sys.path[0]
 
 # sys.path.insert(0,afni_dir)
-import afni_base, afni_util
+from afnipython import afni_base, afni_util
 
 ########################################################################
 ## functions

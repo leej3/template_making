@@ -11,8 +11,8 @@ import math
 import copy
 import numpy as N
 
-from afnipython import afni_util as UTIL
-from afnipython import lib_textdata as TD
+from afnipython import afnipython.afni_util as UTIL
+from afnipython import afnipython.lib_textdata as TD
 
 class AfniXmat:
     def __init__(self, filename="", from_mat=0, matrix=None, verb=1):

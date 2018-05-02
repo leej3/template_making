@@ -12,7 +12,7 @@ import signal, time
 
 # AFNI libraries (besides module_test_lib)
 import afnipython.option_list as OL
-import lib_realtime as RT
+import afnipython.lib_realtime as RT
 import afnipython.afni_util as UTIL
 
 # ----------------------------------------------------------------------
@@ -404,7 +404,7 @@ class ReceiverInterface:
          return 1
       try:
          import numpy as N, wx
-         import lib_RR_plot as LPLOT
+         import afnipython.lib_RR_plot as LPLOT
       except:
          return 1
 
