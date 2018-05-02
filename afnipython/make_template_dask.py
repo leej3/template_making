@@ -56,107 +56,107 @@ g_help_string = """
 """
 # BEGIN common functions across scripts (loosely of course)
 
-class RegWrapTemplate(RegWrap):
 
-        # align the center of a dataset to the center of another dataset like a template
-    @delayed
-    def align_centers(self, dset=None, base=None, suffix="_ac"):
-        print("align centers of %s to %s" %
-              (dset.out_prefix(), base.out_prefix()))
 
-        if(dset.type == 'NIFTI'):
-            # copy original to a temporary file
-            print("dataset input name is %s" % dset.input())
-            ao = ab.strip_extension(dset.input(), ['.nii', 'nii.gz'])
-            print("new AFNI name is %s" % ao[0])
-            aao = ab.afni_name("%s" % (ao[0]))
-            aao.to_afni(new_view="+orig")
-            o = ab.afni_name("%s%s%s" % (aao.out_prefix(), suffix, aao.view))
-        else:
-            o = dset.new("%s%s" % (dset.out_prefix(), suffix))
+# align the center of a dataset to the center of another dataset like a template
+@delayed
+def align_centers(self, dset=None, base=None, suffix="_ac"):
+    print("align centers of %s to %s" %
+          (dset.out_prefix(), base.out_prefix()))
 
-        # use shift transformation of centers between grids as initial
-        # transformation. @Align_Centers (3drefit)
-        copy_cmd = "3dcopy %s %s" % (dset.input(), o.ppv())
-        cmd_str = "%s; @Align_Centers -base %s -dset %s -no_cp" %     \
-            (copy_cmd, base.input(), o.input())
-        print("executing:\n %s" % cmd_str)
-        if (not o.exist() or ps.rewrite or ps.dry_run()):
-            o.delete(ps.oexec)
-            com = ab.shell_com(cmd_str, ps.oexec)
-            com.run()
-            if (not o.exist() and not ps.dry_run()):
-                print("** ERROR: Could not align centers using \n  %s\n" % cmd_str)
-                return None
-        else:
-            self.exists_msg(o.input())
+    if(dset.type == 'NIFTI'):
+        # copy original to a temporary file
+        print("dataset input name is %s" % dset.input())
+        ao = ab.strip_extension(dset.input(), ['.nii', 'nii.gz'])
+        print("new AFNI name is %s" % ao[0])
+        aao = ab.afni_name("%s" % (ao[0]))
+        aao.to_afni(new_view="+orig")
+        o = ab.afni_name("%s%s%s" % (aao.out_prefix(), suffix, aao.view))
+    else:
+        o = dset.new("%s%s" % (dset.out_prefix(), suffix))
 
-        return o
+    # use shift transformation of centers between grids as initial
+    # transformation. @Align_Centers (3drefit)
+    copy_cmd = "3dcopy %s %s" % (dset.input(), o.ppv())
+    cmd_str = "%s; @Align_Centers -base %s -dset %s -no_cp" %     \
+        (copy_cmd, base.input(), o.input())
+    print("executing:\n %s" % cmd_str)
+    if (not o.exist() or ps.rewrite or ps.dry_run()):
+        o.delete(ps.oexec)
+        com = ab.shell_com(cmd_str, ps.oexec)
+        com.run()
+        if (not o.exist() and not ps.dry_run()):
+            print("** ERROR: Could not align centers using \n  %s\n" % cmd_str)
+            return None
+    else:
+        self.exists_msg(o.input())
 
-        # automask - make simple mask
-    @delayed
-    def automask(self, dset=None, suffix="_am"):
-        print("automask %s" % dset.out_prefix())
+    return o
 
-        if(dset.type == 'NIFTI'):
-            # copy original to a temporary file
-            print("dataset input name is %s" % dset.input())
-            ao = ab.strip_extension(dset.input(), ['.nii', 'nii.gz'])
-            print("new AFNI name is %s" % ao[0])
-            aao = ab.afni_name("%s" % (ao[0]))
-            aao.to_afni(new_view="+orig")
-            o = ab.afni_name("%s%s%s" % (aao.out_prefix(), suffix, aao.view))
-        else:
-            o = dset.new("%s%s" % (dset.out_prefix(), suffix))
-        cmd_str = "3dAutomask -apply_prefix %s %s" %     \
-            (o.out_prefix(), dset.input())
-        print("executing:\n %s" % cmd_str)
-        if (not o.exist() or ps.rewrite or ps.dry_run()):
-            o.delete(ps.oexec)
-            com = ab.shell_com(cmd_str, ps.oexec)
-            com.run()
-            if (not o.exist() and not ps.dry_run()):
-                print("** ERROR: Could not unifize using \n  %s\n" % cmd_str)
-                return None
-        else:
-            self.exists_msg(o.input())
+    # automask - make simple mask
+@delayed
+def automask(self, dset=None, suffix="_am"):
+    print("automask %s" % dset.out_prefix())
 
-        return o
-        # unifize - bias-correct a dataset
-    @delayed
-    def unifize(self, dset=None, suffix="_un"):
-        print("unifize %s" % dset.out_prefix())
+    if(dset.type == 'NIFTI'):
+        # copy original to a temporary file
+        print("dataset input name is %s" % dset.input())
+        ao = ab.strip_extension(dset.input(), ['.nii', 'nii.gz'])
+        print("new AFNI name is %s" % ao[0])
+        aao = ab.afni_name("%s" % (ao[0]))
+        aao.to_afni(new_view="+orig")
+        o = ab.afni_name("%s%s%s" % (aao.out_prefix(), suffix, aao.view))
+    else:
+        o = dset.new("%s%s" % (dset.out_prefix(), suffix))
+    cmd_str = "3dAutomask -apply_prefix %s %s" %     \
+        (o.out_prefix(), dset.input())
+    print("executing:\n %s" % cmd_str)
+    if (not o.exist() or ps.rewrite or ps.dry_run()):
+        o.delete(ps.oexec)
+        com = ab.shell_com(cmd_str, ps.oexec)
+        com.run()
+        if (not o.exist() and not ps.dry_run()):
+            print("** ERROR: Could not unifize using \n  %s\n" % cmd_str)
+            return None
+    else:
+        self.exists_msg(o.input())
 
-        if(dset.type == 'NIFTI'):
-            # copy original to a temporary file
-            print("dataset input name is %s" % dset.input())
-            ao = ab.strip_extension(dset.input(), ['.nii', 'nii.gz'])
-            print("new AFNI name is %s" % ao[0])
-            aao = ab.afni_name("%s" % (ao[0]))
-            aao.to_afni(new_view="+orig")
-            o = ab.afni_name("%s%s%s" % (aao.out_prefix(), suffix, aao.view))
-        else:
-            o = dset.new("%s%s" % (dset.out_prefix(), suffix))
-        cmd_str = "3dUnifize -gm -prefix %s -input %s" %     \
-            (o.out_prefix(), dset.input())
-        print("executing:\n %s" % cmd_str)
-        if (not o.exist() or ps.rewrite or ps.dry_run()):
-            o.delete(ps.oexec)
-            com = ab.shell_com(cmd_str, ps.oexec)
-            com.run()
-            if (not o.exist() and not ps.dry_run()):
-                print("** ERROR: Could not unifize using \n  %s\n" % cmd_str)
-                return None
-        else:
-            self.exists_msg(o.input())
+    return o
+    # unifize - bias-correct a dataset
+@delayed
+def unifize(self, dset=None, suffix="_un"):
+    print("unifize %s" % dset.out_prefix())
 
-        return o
+    if(dset.type == 'NIFTI'):
+        # copy original to a temporary file
+        print("dataset input name is %s" % dset.input())
+        ao = ab.strip_extension(dset.input(), ['.nii', 'nii.gz'])
+        print("new AFNI name is %s" % ao[0])
+        aao = ab.afni_name("%s" % (ao[0]))
+        aao.to_afni(new_view="+orig")
+        o = ab.afni_name("%s%s%s" % (aao.out_prefix(), suffix, aao.view))
+    else:
+        o = dset.new("%s%s" % (dset.out_prefix(), suffix))
+    cmd_str = "3dUnifize -gm -prefix %s -input %s" %     \
+        (o.out_prefix(), dset.input())
+    print("executing:\n %s" % cmd_str)
+    if (not o.exist() or ps.rewrite or ps.dry_run()):
+        o.delete(ps.oexec)
+        com = ab.shell_com(cmd_str, ps.oexec)
+        com.run()
+        if (not o.exist() and not ps.dry_run()):
+            print("** ERROR: Could not unifize using \n  %s\n" % cmd_str)
+            return None
+    else:
+        self.exists_msg(o.input())
+
+    return o
 
 
 # Main:
 if __name__ == '__main__':
 
-    ps = RegWrapTemplate('make_template_dask.py')
+    ps = RegWrap('make_template_dask.py')
 
     ps.init_opts()
     ps.version()
@@ -193,9 +193,9 @@ if __name__ == '__main__':
     for dset_name in ps.dsets.parlist:
         start_dset = ab.afni_name(dset_name)
         # start off just aligning the centers of the datasets
-        aname = ps.align_centers(dset=start_dset, base=ps.basedset)
-        amname = ps.automask(dset=aname)
-        dname = ps.unifize(dset=amname)
+        aname = align_centers(ps,dset=start_dset, base=ps.basedset)
+        amname = automask(dset=aname)
+        dname = unifize(dset=amname)
 
         alldnames.append(dname)
 
