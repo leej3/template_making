@@ -60,7 +60,7 @@ g_help_string = """
 
 # align the center of a dataset to the center of another dataset like a template
 @delayed
-def align_centers(self, dset=None, base=None, suffix="_ac"):
+def align_centers(regwrap, dset=None, base=None, suffix="_ac"):
     print("align centers of %s to %s" %
           (dset.out_prefix(), base.out_prefix()))
 
@@ -81,21 +81,21 @@ def align_centers(self, dset=None, base=None, suffix="_ac"):
     cmd_str = "%s; @Align_Centers -base %s -dset %s -no_cp" %     \
         (copy_cmd, base.input(), o.input())
     print("executing:\n %s" % cmd_str)
-    if (not o.exist() or ps.rewrite or ps.dry_run()):
-        o.delete(ps.oexec)
-        com = ab.shell_com(cmd_str, ps.oexec)
+    if (not o.exist() or rewrap.rewrite or rewrap.dry_run()):
+        o.delete(rewrap.oexec)
+        com = ab.shell_com(cmd_str, rewrap.oexec)
         com.run()
-        if (not o.exist() and not ps.dry_run()):
+        if (not o.exist() and not rewrap.dry_run()):
             print("** ERROR: Could not align centers using \n  %s\n" % cmd_str)
             return None
     else:
-        self.exists_msg(o.input())
+        regwrap.exists_msg(o.input())
 
     return o
 
     # automask - make simple mask
 @delayed
-def automask(self, dset=None, suffix="_am"):
+def automask(regwrap, dset=None, suffix="_am"):
     print("automask %s" % dset.out_prefix())
 
     if(dset.type == 'NIFTI'):
@@ -111,20 +111,20 @@ def automask(self, dset=None, suffix="_am"):
     cmd_str = "3dAutomask -apply_prefix %s %s" %     \
         (o.out_prefix(), dset.input())
     print("executing:\n %s" % cmd_str)
-    if (not o.exist() or ps.rewrite or ps.dry_run()):
-        o.delete(ps.oexec)
-        com = ab.shell_com(cmd_str, ps.oexec)
+    if (not o.exist() or rewrap.rewrite or rewrap.dry_run()):
+        o.delete(rewrap.oexec)
+        com = ab.shell_com(cmd_str, rewrap.oexec)
         com.run()
-        if (not o.exist() and not ps.dry_run()):
+        if (not o.exist() and not rewrap.dry_run()):
             print("** ERROR: Could not unifize using \n  %s\n" % cmd_str)
             return None
     else:
-        self.exists_msg(o.input())
+        regwrap.exists_msg(o.input())
 
     return o
     # unifize - bias-correct a dataset
 @delayed
-def unifize(self, dset=None, suffix="_un"):
+def unifize(regwrap, dset=None, suffix="_un"):
     print("unifize %s" % dset.out_prefix())
 
     if(dset.type == 'NIFTI'):
@@ -140,15 +140,15 @@ def unifize(self, dset=None, suffix="_un"):
     cmd_str = "3dUnifize -gm -prefix %s -input %s" %     \
         (o.out_prefix(), dset.input())
     print("executing:\n %s" % cmd_str)
-    if (not o.exist() or ps.rewrite or ps.dry_run()):
-        o.delete(ps.oexec)
-        com = ab.shell_com(cmd_str, ps.oexec)
+    if (not o.exist() or rewrap.rewrite or rewrap.dry_run()):
+        o.delete(rewrap.oexec)
+        com = ab.shell_com(cmd_str, rewrap.oexec)
         com.run()
-        if (not o.exist() and not ps.dry_run()):
+        if (not o.exist() and not rewrap.dry_run()):
             print("** ERROR: Could not unifize using \n  %s\n" % cmd_str)
             return None
     else:
-        self.exists_msg(o.input())
+        regwrap.exists_msg(o.input())
 
     return o
 
@@ -194,8 +194,8 @@ if __name__ == '__main__':
         start_dset = ab.afni_name(dset_name)
         # start off just aligning the centers of the datasets
         aname = align_centers(ps,dset=start_dset, base=ps.basedset)
-        amname = automask(dset=aname)
-        dname = unifize(dset=amname)
+        amname = automask(regwrap,aname)
+        dname = unifize(regwrap,amname)
 
         alldnames.append(dname)
 
