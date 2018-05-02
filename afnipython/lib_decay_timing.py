@@ -10,7 +10,7 @@ import sys
 # import libraries
 import math
 # import afnipython.afni_util as UTIL
-# import lib_afni1D as LD
+# import afnipython.lib_afni1D as LD
 
 def decay_mean(a,b):
    """integral of xe^-x on [a,b] = (a+1)e^-a - (b+1)e^-b

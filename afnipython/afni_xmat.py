@@ -11,7 +11,7 @@ import math
 import copy
 import numpy as N
 
-from afnipython import afnipython.afni_util as UTIL
+from afnipython import afni_util as UTIL
 from afnipython import lib_textdata as TD
 
 class AfniXmat:

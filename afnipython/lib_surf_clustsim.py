@@ -6,7 +6,7 @@ import sys, os
 from time import asctime
 import glob
 
-import afni_base as BASE
+import afnipython.afni_base as BASE
 import afnipython.afni_util as UTIL
 import afnipython.lib_subjects as SUBJ
 import afnipython.lib_vars_object as VO

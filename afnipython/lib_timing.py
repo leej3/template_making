@@ -17,7 +17,7 @@ if module_test_lib.num_import_failures(g_testlibs): sys.exit(1)
 import math
 import copy
 import afnipython.afni_util as UTIL
-import lib_afni1D as LD
+import afnipython.lib_afni1D as LD
 
 g_marry_AM_methods = ['lin_run_fraq', 'lin_event_index']
 

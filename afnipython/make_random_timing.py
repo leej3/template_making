@@ -7,7 +7,7 @@ from __future__ import print_function
 import sys, random, os, math, copy
 import afnipython.option_list as OL, afni_util as UTIL
 import lib_rand_timing as LRT
-import lib_afni1D as LAD
+import afnipython.lib_afni1D as LAD
 
 g_help_string = """
 ===========================================================================

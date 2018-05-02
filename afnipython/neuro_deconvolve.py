@@ -2,7 +2,7 @@
 
 import sys
 import option_list, afni_util as UTIL, afni_base as BASE
-import lib_afni1D as LD
+import afnipython.lib_afni1D as LD
 
 g_help_string = """
 ===========================================================================

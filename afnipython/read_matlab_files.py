@@ -6,7 +6,7 @@ import sys, os, glob
 # AFNI libraries
 import afnipython.option_list as OL
 import afnipython.afni_util as UTIL
-import lib_afni1D as LD
+import afnipython.lib_afni1D as LD
 
 # ----------------------------------------------------------------------
 # globals

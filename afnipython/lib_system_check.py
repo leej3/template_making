@@ -14,7 +14,7 @@ if MT.num_import_failures(testlibs):
    sys.exit(1)
 
 import platform, glob
-import afni_base as BASE
+import afnipython.afni_base as BASE
 import afnipython.afni_util as UTIL
 
 class SysInfo:

@@ -16,7 +16,7 @@ from afnipython.afni_util import *
 from afnipython.option_list import *
 from afnipython.db_mod import *
 import afnipython.lib_vars_object as VO
-import afnipython.ask_me
+from afnipython import ask_me
 
 # ----------------------------------------------------------------------
 # globals

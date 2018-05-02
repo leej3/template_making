@@ -4023,7 +4023,7 @@ class AfniData(object):
       return mstr
 
 def show_multi_isi_stats(adlist, run_lens, tr, verb=0):
-   import lib_timing as LT
+   import afnipython.lib_timing as LT
 
    nad = len(adlist)
    if nad == 0:

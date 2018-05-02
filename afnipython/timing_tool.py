@@ -8,7 +8,7 @@ import gc, math, copy
 
 # AFNI libraries
 import afnipython.option_list as OL
-import lib_timing as LT
+import afnipython.lib_timing as LT
 import afnipython.afni_util as UTIL
 import lib_textdata as TD
 
