@@ -16,11 +16,11 @@ import copy
 from time import asctime
 
 # AFNI modules
-from afni_base import *
-from afni_util import *
-from option_list import *
-from db_mod import *
-import ask_me
+from afnipython.afni_base import *
+from afnipython.afni_util import *
+from afnipython.option_list import *
+from afnipython.db_mod import *
+from afnipython import ask_me
 
 g_help_string = """
     ===========================================================================

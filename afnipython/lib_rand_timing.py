@@ -3,7 +3,7 @@
 # python3 status: started
 
 import sys, random, os, math
-import afni_util as UTIL
+import afnipython.afni_util as UTIL
 import lib_afni1D as LD
 
 gDEF_T_GRAN     = 0.01   # default time granularity, in seconds

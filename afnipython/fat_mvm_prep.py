@@ -30,7 +30,7 @@
 #
 
 
-import lib_fat_funcs as GR
+import afnipython.lib_fat_funcs as GR
 from numpy import set_printoptions
 import getopt, sys 
 

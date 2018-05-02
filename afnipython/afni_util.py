@@ -5,8 +5,8 @@
 # afni_util.py : general utilities for python programs
 
 import sys, os, math
-import afni_base as BASE
-import lib_textdata as TD
+import afnipython.afni_base as BASE
+import afnipython.lib_textdata as TD
 import glob
 import pdb
 

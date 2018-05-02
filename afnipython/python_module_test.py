@@ -4,8 +4,7 @@
 # test python modules
 
 import sys
-import module_test_lib
-
+from afnipython import module_test_lib
 g_help_string = """
 ===========================================================================
 python_module_test.py   - test the loading of python modules
@@ -229,7 +228,7 @@ class ModuleTest:
       return None
 
    def show_failed_command(self):
-      import afni_util as UTIL
+      import afnipython.afni_util as UTIL
       UTIL.show_args_as_command(sys.argv,"** failed command:")
 
 def process():

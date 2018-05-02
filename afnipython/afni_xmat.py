@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-import module_test_lib
+from afnipython import module_test_lib
 g_testlibs = ['sys', 'math', 'numpy']
 if module_test_lib.num_import_failures(g_testlibs): sys.exit(1)
     
@@ -11,8 +11,8 @@ import math
 import copy
 import numpy as N
 
-import afni_util as UTIL
-import lib_textdata as TD
+from afnipython import afnipython.afni_util as UTIL
+from afnipython import lib_textdata as TD
 
 class AfniXmat:
     def __init__(self, filename="", from_mat=0, matrix=None, verb=1):

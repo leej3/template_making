@@ -5,15 +5,15 @@
 import sys, os, copy, math
 
 # system libraries : test, then import as local symbols
-import module_test_lib
+from afnipython import module_test_lib
 testlibs = ['copy', 'signal']
 if module_test_lib.num_import_failures(testlibs): sys.exit(1)
 import copy
 
-import afni_util as UTIL
-import lib_vars_object as VO
-import lib_uber_align as UALIGN
-import option_list as OPT
+import afnipython.afni_util as UTIL
+import afnipython.lib_vars_object as VO
+import afnipython.lib_uber_align as UALIGN
+import afnipython.option_list as OPT
 
 g_command_help = """
 ===========================================================================
@@ -270,7 +270,7 @@ class AlignInterface(object):
          return 1
 
       # if the above worked, let any GUI import errors show normally
-      import gui_uber_align_test as GUT
+      import afnipython.gui_uber_align_test as GUT
 
       app = QtGui.QApplication(self.guiopts)
       D = GUT.MainWindow(cvars=self.cvars, uvars=self.uvars, set_pdir=1)

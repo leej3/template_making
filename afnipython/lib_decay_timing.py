@@ -3,13 +3,13 @@
 # python3 status: working
 
 import sys
-# import module_test_lib
+# from afnipython import module_test_lib
 # g_testlibs = ['sys', 'math']
 # if module_test_lib.num_import_failures(g_testlibs): sys.exit(1)
    
 # import libraries
 import math
-# import afni_util as UTIL
+# import afnipython.afni_util as UTIL
 # import lib_afni1D as LD
 
 def decay_mean(a,b):

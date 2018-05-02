@@ -10,8 +10,8 @@ import sys, os, glob, subprocess, csv, re, shutil, argparse, signal, textwrap
 import random
 
 # AFNI libraries
-# import afni_util as UTIL
-# import option_list as OL
+# import afnipython.afni_util as UTIL
+# import afnipython.option_list as OL
 
 ########################################################################
 ## definitions

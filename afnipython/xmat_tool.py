@@ -5,7 +5,7 @@
 # see "xmat_tool.py -help"
 
 import sys
-import ui_xmat as UIX
+import afnipython.ui_xmat as UIX
 
 def main():
    XM = UIX.XmatInterface()

@@ -9,10 +9,10 @@ if 1 :  # for testing, might add the current dir and ~/abin to the PATH
 
 # AFNI libraries
 import afni_base as BASE
-import option_list as OL
-import afni_util as UTIL        # not actually used, but probably will be
+import afnipython.option_list as OL
+import afnipython.afni_util as UTIL        # not actually used, but probably will be
 import lib_afni1D as LAD
-import lib_vars_object as VO
+import afnipython.lib_vars_object as VO
 
 # ----------------------------------------------------------------------
 # globals

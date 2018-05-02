@@ -7,10 +7,10 @@ from PyQt4 import QtCore, QtGui
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-import lib_vars_object as VO
-import lib_uber_subject as USUBJ
-import lib_qt_gui as QLIB
-import gui_uber_subj as GUS    # single subject GUI
+import afnipython.lib_vars_object as VO
+import afnipython.lib_uber_subject as USUBJ
+import afnipython.lib_qt_gui as QLIB
+import afnipython.gui_uber_subj as GUS    # single subject GUI
 
 U_STATUS_UBER_DIR       = 1     # status bit for valid results directory
 __version__ = "0.0.1"

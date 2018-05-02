@@ -4,8 +4,8 @@
 import sys, os
 
 # AFNI libraries
-import afni_util as UTIL
-import option_list as OL
+import afnipython.afni_util as UTIL
+import afnipython.option_list as OL
 
 # ----------------------------------------------------------------------
 # globals

@@ -5,7 +5,7 @@
 # library for performing various system checks
 
 import os, sys
-import module_test_lib as MT
+import afnipython.module_test_lib as MT
 
 # test dependency libs before proceeding
 # note: platform came with python 2.3
@@ -15,7 +15,7 @@ if MT.num_import_failures(testlibs):
 
 import platform, glob
 import afni_base as BASE
-import afni_util as UTIL
+import afnipython.afni_util as UTIL
 
 class SysInfo:
    """system info class"""

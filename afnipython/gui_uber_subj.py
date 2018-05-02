@@ -7,7 +7,7 @@
 import sys, os, math
 
 # system libraries : test, then import as local symbols
-import module_test_lib
+from afnipython import module_test_lib
 testlibs = ['signal', 'PyQt4']
 if module_test_lib.num_import_failures(testlibs): sys.exit(1)
 import signal
@@ -18,11 +18,11 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 from PyQt4 import QtCore, QtGui
 
 import afni_base as BASE
-import afni_util as UTIL
-import lib_subjects as SUBJ
-import lib_vars_object as VO
-import lib_uber_subject as USUBJ
-import lib_qt_gui as QLIB
+import afnipython.afni_util as UTIL
+import afnipython.lib_subjects as SUBJ
+import afnipython.lib_vars_object as VO
+import afnipython.lib_uber_subject as USUBJ
+import afnipython.lib_qt_gui as QLIB
 
 # allow users to play with style
 g_styles = ["windows", "motif", "cde", "plastique", "cleanlooks"]
