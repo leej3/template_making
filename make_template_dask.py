@@ -7,9 +7,9 @@
 #
 # command working for john:
 # python make_template_dask.py -dsets /data/DSST/template_making/testdata/*.nii.gz -init_base /usr/local/apps/afni/current/linux_openmp_64/MNI152_2009_template.nii.gz
-
-# sys.path.append('/data/NIMH_SSCC/template_making/scripts')
-
+import sys
+import socket
+from shutil import which
 # AFNI modules
 import afni_base as ab
 import afni_util as au
@@ -24,6 +24,15 @@ except:
     print("Can't find dask stuff. Going to run in 'excruciatingly-slow-mode'")
     def delayed(fn):
         return fn
+
+sys.path.append('/data/DSST/template_making/scripts')
+
+
+if 'felix.nimh.nih.gov' == socket.gethostname():
+    raise EnvironmentError("Need to run from cluster node. Not Felix")
+
+if not which('3dinfo'):
+    except EnvironmentError("Is AFNI on your path?")
 
 g_help_string = """
     ===========================================================================
@@ -152,16 +161,12 @@ if __name__ == '__main__':
     ps.init_opts()
     ps.version()
     rv = ps.get_user_opts()
-    if rv is not None:
-        ps.ciao(1)
+    if rv is not None: ps.ciao(1)
 
     # process and check input params
     ps.process_input()
-    if(not (ps.process_input())):
-        ps.ciao(1)
+    # if(not (ps.process_input())): ps.ciao(1)
 
-    # get rid of any previous temporary data
-    ps.cleanup()
     # setup a scheduler. the cluster object will manage this
     # It's important to constrain the workers to ones that
     # default to the same networking.
@@ -173,11 +178,11 @@ if __name__ == '__main__':
         threads = 4,
         job_extra = ['--constraint=10g'] )
     # n_workers = ps.dsets.parlist
-    n_workers = 4
+    n_workers = 2
     print("starting %d workers!" % n_workers)
     cluster.start_workers(n_workers)
 
-    c = Client(cluster)
+    client = Client(cluster)
     # coopt align_centers for delayed
     # align_centers = delayed(ps.align_centers)
     # automask = delayed(ps.automask)
@@ -196,6 +201,15 @@ if __name__ == '__main__':
 
     print("Configured first processing loop")
 
-    c.gather(affine)
+    # The following command executes the task graph that
+    # alldnames represents. This is non-blocking. We can continue
+    # our python session. Whenever we query the affine object
+    # we will be informed of its status.
+    affine = client.compute(alldnames)
+    # This is a blocking call and will return the results.
+    # We could run this immediately or wait until affine shows
+    # that the computation is finished.
+    import pdb;pdb.set_trace()
+    client.gather(affine)
 
     ps.ciao(0)
