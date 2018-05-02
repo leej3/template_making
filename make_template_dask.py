@@ -32,7 +32,7 @@ if 'felix.nimh.nih.gov' == socket.gethostname():
     raise EnvironmentError("Need to run from cluster node. Not Felix")
 
 if not which('3dinfo'):
-    except EnvironmentError("Is AFNI on your path?")
+    raise EnvironmentError("Is AFNI on your path?")
 
 g_help_string = """
     ===========================================================================
